@@ -1,0 +1,3434 @@
+---
+source: src/gen.rs
+expression: result
+---
+Dungeon3DGeneratorResult {
+    rooms: {
+        RoomId(
+            1,
+        ): Room {
+            id: RoomId(
+                1,
+            ),
+            width: 5,
+            height: 3,
+            depth: 7,
+            origin: (
+                0,
+                0,
+                0,
+            ),
+            center_offset: (
+                2.5,
+                1.5,
+                3.5,
+            ),
+        },
+        RoomId(
+            2,
+        ): Room {
+            id: RoomId(
+                2,
+            ),
+            width: 6,
+            height: 3,
+            depth: 7,
+            origin: (
+                0,
+                0,
+                10,
+            ),
+            center_offset: (
+                3.0,
+                1.5,
+                3.5,
+            ),
+        },
+        RoomId(
+            3,
+        ): Room {
+            id: RoomId(
+                3,
+            ),
+            width: 5,
+            height: 2,
+            depth: 5,
+            origin: (
+                1,
+                0,
+                22,
+            ),
+            center_offset: (
+                2.5,
+                1.0,
+                2.5,
+            ),
+        },
+        RoomId(
+            4,
+        ): Room {
+            id: RoomId(
+                4,
+            ),
+            width: 5,
+            height: 2,
+            depth: 6,
+            origin: (
+                9,
+                1,
+                0,
+            ),
+            center_offset: (
+                2.5,
+                1.0,
+                3.0,
+            ),
+        },
+        RoomId(
+            5,
+        ): Room {
+            id: RoomId(
+                5,
+            ),
+            width: 6,
+            height: 2,
+            depth: 5,
+            origin: (
+                8,
+                1,
+                8,
+            ),
+            center_offset: (
+                3.0,
+                1.0,
+                2.5,
+            ),
+        },
+        RoomId(
+            6,
+        ): Room {
+            id: RoomId(
+                6,
+            ),
+            width: 5,
+            height: 3,
+            depth: 6,
+            origin: (
+                9,
+                0,
+                16,
+            ),
+            center_offset: (
+                2.5,
+                1.5,
+                3.0,
+            ),
+        },
+        RoomId(
+            7,
+        ): Room {
+            id: RoomId(
+                7,
+            ),
+            width: 5,
+            height: 3,
+            depth: 5,
+            origin: (
+                8,
+                0,
+                24,
+            ),
+            center_offset: (
+                2.5,
+                1.5,
+                2.5,
+            ),
+        },
+        RoomId(
+            8,
+        ): Room {
+            id: RoomId(
+                8,
+            ),
+            width: 6,
+            height: 3,
+            depth: 5,
+            origin: (
+                16,
+                0,
+                0,
+            ),
+            center_offset: (
+                3.0,
+                1.5,
+                2.5,
+            ),
+        },
+        RoomId(
+            9,
+        ): Room {
+            id: RoomId(
+                9,
+            ),
+            width: 5,
+            height: 2,
+            depth: 7,
+            origin: (
+                16,
+                0,
+                10,
+            ),
+            center_offset: (
+                2.5,
+                1.0,
+                3.5,
+            ),
+        },
+        RoomId(
+            10,
+        ): Room {
+            id: RoomId(
+                10,
+            ),
+            width: 6,
+            height: 3,
+            depth: 7,
+            origin: (
+                16,
+                0,
+                20,
+            ),
+            center_offset: (
+                3.0,
+                1.5,
+                3.5,
+            ),
+        },
+        RoomId(
+            11,
+        ): Room {
+            id: RoomId(
+                11,
+            ),
+            width: 5,
+            height: 2,
+            depth: 6,
+            origin: (
+                25,
+                0,
+                0,
+            ),
+            center_offset: (
+                2.5,
+                1.0,
+                3.0,
+            ),
+        },
+        RoomId(
+            12,
+        ): Room {
+            id: RoomId(
+                12,
+            ),
+            width: 5,
+            height: 3,
+            depth: 6,
+            origin: (
+                24,
+                0,
+                10,
+            ),
+            center_offset: (
+                2.5,
+                1.5,
+                3.0,
+            ),
+        },
+        RoomId(
+            13,
+        ): Room {
+            id: RoomId(
+                13,
+            ),
+            width: 5,
+            height: 3,
+            depth: 8,
+            origin: (
+                24,
+                0,
+                20,
+            ),
+            center_offset: (
+                2.5,
+                1.5,
+                4.0,
+            ),
+        },
+        RoomId(
+            14,
+        ): Room {
+            id: RoomId(
+                14,
+            ),
+            width: 7,
+            height: 3,
+            depth: 9,
+            origin: (
+                0,
+                5,
+                7,
+            ),
+            center_offset: (
+                3.5,
+                1.5,
+                4.5,
+            ),
+        },
+        RoomId(
+            15,
+        ): Room {
+            id: RoomId(
+                15,
+            ),
+            width: 5,
+            height: 2,
+            depth: 7,
+            origin: (
+                13,
+                5,
+                1,
+            ),
+            center_offset: (
+                2.5,
+                1.0,
+                3.5,
+            ),
+        },
+        RoomId(
+            16,
+        ): Room {
+            id: RoomId(
+                16,
+            ),
+            width: 5,
+            height: 2,
+            depth: 7,
+            origin: (
+                13,
+                5,
+                10,
+            ),
+            center_offset: (
+                2.5,
+                1.0,
+                3.5,
+            ),
+        },
+        RoomId(
+            17,
+        ): Room {
+            id: RoomId(
+                17,
+            ),
+            width: 6,
+            height: 2,
+            depth: 7,
+            origin: (
+                11,
+                6,
+                21,
+            ),
+            center_offset: (
+                3.0,
+                1.0,
+                3.5,
+            ),
+        },
+        RoomId(
+            18,
+        ): Room {
+            id: RoomId(
+                18,
+            ),
+            width: 6,
+            height: 2,
+            depth: 8,
+            origin: (
+                22,
+                5,
+                0,
+            ),
+            center_offset: (
+                3.0,
+                1.0,
+                4.0,
+            ),
+        },
+        RoomId(
+            19,
+        ): Room {
+            id: RoomId(
+                19,
+            ),
+            width: 7,
+            height: 3,
+            depth: 6,
+            origin: (
+                21,
+                5,
+                11,
+            ),
+            center_offset: (
+                3.5,
+                1.5,
+                3.0,
+            ),
+        },
+        RoomId(
+            20,
+        ): Room {
+            id: RoomId(
+                20,
+            ),
+            width: 6,
+            height: 2,
+            depth: 6,
+            origin: (
+                20,
+                6,
+                22,
+            ),
+            center_offset: (
+                3.0,
+                1.0,
+                3.0,
+            ),
+        },
+        RoomId(
+            21,
+        ): Room {
+            id: RoomId(
+                21,
+            ),
+            width: 5,
+            height: 2,
+            depth: 9,
+            origin: (
+                0,
+                11,
+                0,
+            ),
+            center_offset: (
+                2.5,
+                1.0,
+                4.5,
+            ),
+        },
+        RoomId(
+            22,
+        ): Room {
+            id: RoomId(
+                22,
+            ),
+            width: 5,
+            height: 2,
+            depth: 8,
+            origin: (
+                8,
+                10,
+                20,
+            ),
+            center_offset: (
+                2.5,
+                1.0,
+                4.0,
+            ),
+        },
+    },
+    room_connections: [
+        RoomConnection {
+            room0_id: RoomId(
+                17,
+            ),
+            room1_id: RoomId(
+                22,
+            ),
+            squared_length: 28.5,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                2,
+            ),
+            room1_id: RoomId(
+                14,
+            ),
+            squared_length: 29.25,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                12,
+            ),
+            room1_id: RoomId(
+                19,
+            ),
+            squared_length: 30.0,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                11,
+            ),
+            room1_id: RoomId(
+                18,
+            ),
+            squared_length: 32.25,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                4,
+            ),
+            room1_id: RoomId(
+                15,
+            ),
+            squared_length: 34.25,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                9,
+            ),
+            room1_id: RoomId(
+                16,
+            ),
+            squared_length: 34.0,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                8,
+            ),
+            room1_id: RoomId(
+                15,
+            ),
+            squared_length: 36.5,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                13,
+            ),
+            room1_id: RoomId(
+                20,
+            ),
+            squared_length: 43.5,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                5,
+            ),
+            room1_id: RoomId(
+                16,
+            ),
+            squared_length: 45.25,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                7,
+            ),
+            room1_id: RoomId(
+                17,
+            ),
+            squared_length: 46.5,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                10,
+            ),
+            room1_id: RoomId(
+                20,
+            ),
+            squared_length: 48.5,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                3,
+            ),
+            room1_id: RoomId(
+                7,
+            ),
+            squared_length: 53.25,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                4,
+            ),
+            room1_id: RoomId(
+                5,
+            ),
+            squared_length: 56.5,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                10,
+            ),
+            room1_id: RoomId(
+                17,
+            ),
+            squared_length: 56.25,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                6,
+            ),
+            room1_id: RoomId(
+                7,
+            ),
+            squared_length: 57.25,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                8,
+            ),
+            room1_id: RoomId(
+                18,
+            ),
+            squared_length: 58.5,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                9,
+            ),
+            room1_id: RoomId(
+                12,
+            ),
+            squared_length: 64.5,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                6,
+            ),
+            room1_id: RoomId(
+                16,
+            ),
+            squared_length: 66.5,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                2,
+            ),
+            room1_id: RoomId(
+                5,
+            ),
+            squared_length: 73.25,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                14,
+            ),
+            room1_id: RoomId(
+                21,
+            ),
+            squared_length: 80.25,
+        },
+        RoomConnection {
+            room0_id: RoomId(
+                1,
+            ),
+            room1_id: RoomId(
+                4,
+            ),
+            squared_length: 81.5,
+        },
+    ],
+    edges: [
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.0,
+                        1.5,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.0,
+                        2.0,
+                        10.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.0,
+                        2.0,
+                        10.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.0,
+                        1.5,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.0,
+                        1.5,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.0,
+                        2.0,
+                        10.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.5,
+                        2.0,
+                        3.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.0,
+                        2.0,
+                        10.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.0,
+                        2.0,
+                        10.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        2.0,
+                        3.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        2.0,
+                        3.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        27.5,
+                        1.0,
+                        3.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        27.5,
+                        1.0,
+                        3.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        13.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        13.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        13.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        27.5,
+                        1.0,
+                        3.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        13.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        13.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        27.5,
+                        1.0,
+                        3.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        13.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        27.5,
+                        1.0,
+                        3.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        1.5,
+                        3.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.0,
+                        1.5,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.0,
+                        2.0,
+                        10.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        2.5,
+                        1.5,
+                        3.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        2.5,
+                        1.5,
+                        3.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.0,
+                        1.5,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.0,
+                        2.0,
+                        10.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        1.5,
+                        3.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        2.0,
+                        3.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        2.0,
+                        3.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.0,
+                        1.5,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        2.0,
+                        3.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.0,
+                        2.0,
+                        10.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.0,
+                        2.0,
+                        10.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.0,
+                        2.0,
+                        10.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.0,
+                        2.0,
+                        10.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        14.0,
+                        7.0,
+                        24.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        14.0,
+                        7.0,
+                        24.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        14.0,
+                        7.0,
+                        24.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        14.0,
+                        7.0,
+                        24.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        27.5,
+                        1.0,
+                        3.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        25.0,
+                        6.0,
+                        4.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        25.0,
+                        6.0,
+                        4.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        27.5,
+                        1.0,
+                        3.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        25.0,
+                        6.0,
+                        4.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        13.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        13.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        25.0,
+                        6.0,
+                        4.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        25.0,
+                        6.0,
+                        4.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        13.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        24.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        13.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        24.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        18.5,
+                        1.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        13.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        25.0,
+                        6.0,
+                        4.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        25.0,
+                        6.0,
+                        4.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        25.0,
+                        6.0,
+                        4.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        24.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        23.0,
+                        7.0,
+                        25.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        23.0,
+                        7.0,
+                        25.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        23.0,
+                        7.0,
+                        25.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        24.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        23.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        14.0,
+                        7.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        23.0,
+                        7.0,
+                        25.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        14.0,
+                        7.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        26.5,
+                        1.5,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        23.0,
+                        7.0,
+                        25.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        14.0,
+                        7.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        23.0,
+                        7.0,
+                        25.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.0,
+                        1.5,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.5,
+                        2.0,
+                        3.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        2.5,
+                        1.5,
+                        3.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        2.0,
+                        3.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.5,
+                        2.0,
+                        3.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        4.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        19.0,
+                        1.5,
+                        2.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        25.0,
+                        6.0,
+                        4.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        25.0,
+                        6.0,
+                        4.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        11.0,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        1.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        11.0,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        11.0,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        1.5,
+                        26.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        14.0,
+                        7.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        11.0,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        14.0,
+                        7.0,
+                        24.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        11.0,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        11.0,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        11.5,
+                        1.5,
+                        19.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        14.0,
+                        7.0,
+                        24.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        23.0,
+                        7.0,
+                        25.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        11.0,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        23.0,
+                        7.0,
+                        25.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        23.0,
+                        7.0,
+                        25.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        11.0,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        3.5,
+                        6.5,
+                        11.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        10.5,
+                        11.0,
+                        24.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        15.5,
+                        6.0,
+                        13.5,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+        Edge {
+            u: Vertex {
+                position: [
+                    [
+                        24.5,
+                        6.5,
+                        14.0,
+                    ],
+                ],
+            },
+            v: Vertex {
+                position: [
+                    [
+                        2.5,
+                        12.0,
+                        4.5,
+                    ],
+                ],
+            },
+            is_bad: false,
+        },
+    ],
+}
