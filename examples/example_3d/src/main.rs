@@ -36,13 +36,5 @@ fn main() {
                 &Point3::new(0.0, 1.0, 0.0),
             );
         }
-
-        for edge in dungeon.edges.iter() {
-            window.draw_line(
-                &Point3::new(edge.u.position.x, edge.u.position.y, edge.u.position.z),
-                &Point3::new(edge.v.position.x, edge.v.position.y, edge.v.position.z),
-                &Point3::new(0.0, 1.0, 1.0),
-            );
-        }
     }
 }

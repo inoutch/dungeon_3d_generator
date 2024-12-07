@@ -1,5 +1,5 @@
 use nalgebra::{Matrix4, Vector3};
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 use std::hash::{Hash, Hasher};
 
 const ACCURACY: f32 = 1000.0;
@@ -254,19 +254,24 @@ impl PartialEq for Edge {
 }
 
 #[derive(Clone, Debug)]
-pub struct Delaunay3D {
+pub struct Delaunay3D<T> {
     pub vertices: Vec<Vertex>,
+    pub id_map: HashMap<Vertex, T>,
     pub edges: Vec<Edge>,
     pub triangles: Vec<Triangle>,
     pub tetrahedra: Vec<Tetrahedron>,
 }
 
-impl Delaunay3D {
-    pub fn new(vertices: Vec<Vector3<f32>>) -> Self {
+impl<T> Delaunay3D<T> {
+    pub fn new(vertices: Vec<(T, Vector3<f32>)>) -> Self {
         let mut ret = Self {
             vertices: vertices
+                .iter()
+                .map(|(_, v)| Vertex { position: *v })
+                .collect(),
+            id_map: vertices
                 .into_iter()
-                .map(|v| Vertex { position: v })
+                .map(|(key, value)| (Vertex { position: value }, key))
                 .collect(),
             edges: Vec::new(),
             triangles: Vec::new(),

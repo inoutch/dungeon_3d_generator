@@ -1,8 +1,9 @@
-use crate::delaunary_3d::{Delaunay3D, Edge};
+use crate::delaunary_3d::Delaunay3D;
 use nalgebra::Vector3;
 use pathfinding::prelude::kruskal;
 use rand::{Rng, SeedableRng};
-use std::collections::BTreeMap;
+use std::collections::{BTreeMap, BTreeSet, HashSet};
+use std::hash::{Hash, Hasher};
 use std::ops::RangeInclusive;
 use std::rc::Rc;
 
@@ -116,11 +117,28 @@ pub struct RoomConnection {
     pub squared_length: f32,
 }
 
+impl Eq for RoomConnection {}
+
+impl PartialEq for RoomConnection {
+    fn eq(&self, other: &Self) -> bool {
+        self.room0_id == other.room0_id && self.room1_id == other.room1_id
+    }
+}
+
+impl Hash for RoomConnection {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        if self.room0_id.0 < self.room1_id.0 {
+            (self.room0_id, self.room1_id).hash(state);
+        } else {
+            (self.room1_id, self.room0_id).hash(state);
+        }
+    }
+}
+
 #[derive(Debug)]
 pub struct Dungeon3DGeneratorResult {
     pub rooms: BTreeMap<RoomId, Room>,
-    pub room_connections: Vec<Rc<RoomConnection>>,
-    pub edges: Vec<Edge>,
+    pub room_connections: HashSet<Rc<RoomConnection>>,
 }
 
 #[derive(Debug)]
@@ -221,6 +239,10 @@ pub fn generate_dungeon_3d(
         .collect::<Vec<_>>();
     sorted_rooms.sort_by(|a, b| a.1.partial_cmp(&b.1).unwrap());
 
+    for (_, room) in rooms.iter_mut() {
+        let mut room_origin = room.origin;
+    }
+
     let mut room_connections = Vec::new();
     let mut room_connection_map: BTreeMap<RoomId, BTreeMap<RoomId, Rc<RoomConnection>>> =
         BTreeMap::new();
@@ -254,20 +276,6 @@ pub fn generate_dungeon_3d(
         }
     }
 
-    let delaunay = Delaunay3D::new(
-        rooms
-            .values()
-            .map(|room| {
-                let center = room.center();
-                Vector3::new(center.0, center.1, center.2)
-            })
-            .collect(),
-    );
-
-    for (_, room) in rooms.iter_mut() {
-        let mut room_origin = room.origin;
-    }
-
     // Create mst of room neighbors
     let weighted_edges = room_connections
         .iter()
@@ -279,7 +287,8 @@ pub fn generate_dungeon_3d(
             )
         })
         .collect::<Vec<_>>();
-    let room_connections = kruskal(&weighted_edges)
+
+    let mut necessary_room_connections = kruskal(&weighted_edges)
         .map(|(room0_id, room1_id, _)| {
             Rc::clone(
                 room_connection_map
@@ -289,12 +298,36 @@ pub fn generate_dungeon_3d(
                     .unwrap(),
             )
         })
+        .collect::<HashSet<_>>();
+
+    let delaunay = Delaunay3D::new(
+        rooms
+            .values()
+            .map(|room| {
+                let center = room.center();
+                (room.id, Vector3::new(center.0, center.1, center.2))
+            })
+            .collect(),
+    );
+    let room_connections = delaunay
+        .edges
+        .iter()
+        .map(|edge| RoomConnection {
+            room0_id: *delaunay.id_map.get(&edge.u).unwrap(),
+            room1_id: *delaunay.id_map.get(&edge.v).unwrap(),
+            squared_length: (edge.u.position - edge.v.position).norm_squared(),
+        })
         .collect::<Vec<_>>();
+
+    for room_connection in room_connections {
+        if rng.gen_bool(0.3) {
+            necessary_room_connections.insert(Rc::new(room_connection));
+        }
+    }
 
     Ok(Dungeon3DGeneratorResult {
         rooms,
-        room_connections,
-        edges: delaunay.edges,
+        room_connections: necessary_room_connections,
     })
 }
 
