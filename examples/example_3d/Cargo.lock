@@ -468,6 +468,7 @@ version = "0.1.0"
 dependencies = [
  "dungeon_3d_generator",
  "kiss3d",
+ "pathfinding",
 ]
 
 [[package]]

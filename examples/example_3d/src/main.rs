@@ -24,6 +24,16 @@ fn main() {
         ));
     }
 
+    for passage in dungeon.passages.iter() {
+        let mut c = window.add_cube(1.0, 1.0, 1.0);
+        c.set_color(1.0, 1.0, 0.5);
+        c.set_local_translation(Translation3::new(
+            passage.start.0 as f32 + 0.5,
+            passage.start.1 as f32 + 0.5,
+            passage.start.2 as f32 + 0.5,
+        ));
+    }
+
     while window.render() {
         for room_connection in dungeon.room_connections.iter() {
             let room0 = dungeon.rooms.get(&room_connection.room0_id).unwrap();

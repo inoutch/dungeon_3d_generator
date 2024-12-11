@@ -1,8 +1,10 @@
+use crate::constants::Cell;
 use crate::delaunary_3d::Delaunay3D;
-use nalgebra::Vector3;
+use crate::intersect_rect_with_line::intersect_rect_with_line;
+use nalgebra::{Vector2, Vector3};
 use pathfinding::prelude::kruskal;
 use rand::{Rng, SeedableRng};
-use std::collections::{BTreeMap, BTreeSet, HashSet};
+use std::collections::{BTreeMap, HashMap, HashSet};
 use std::hash::{Hash, Hasher};
 use std::ops::RangeInclusive;
 use std::rc::Rc;
@@ -16,7 +18,9 @@ pub struct Dungeon3DGeneratorConfig {
     pub room_width_range: RangeInclusive<u32>,
     pub room_height_range: RangeInclusive<u32>,
     pub room_depth_range: RangeInclusive<u32>,
-    pub room_margin: u32,
+    pub room_margin_x: u32,
+    pub room_margin_y: u32,
+    pub room_margin_z: u32,
 }
 
 impl Default for Dungeon3DGeneratorConfig {
@@ -30,7 +34,9 @@ impl Default for Dungeon3DGeneratorConfig {
             room_width_range: 5..=10,
             room_height_range: 2..=3,
             room_depth_range: 5..=10,
-            room_margin: 2,
+            room_margin_x: 2,
+            room_margin_y: 1,
+            room_margin_z: 2,
         }
     }
 }
@@ -136,9 +142,19 @@ impl Hash for RoomConnection {
 }
 
 #[derive(Debug)]
+pub struct Passage {
+    pub cells: Vec<((i32, i32, i32), Cell)>,
+    pub start: (i32, i32, i32),
+    pub start_room_id: RoomId,
+    pub end_room_id: RoomId,
+}
+
+#[derive(Debug)]
 pub struct Dungeon3DGeneratorResult {
     pub rooms: BTreeMap<RoomId, Room>,
     pub room_connections: HashSet<Rc<RoomConnection>>,
+    pub cell_map: HashMap<Vector3<i32>, Cell>,
+    pub passages: Vec<Passage>,
 }
 
 #[derive(Debug)]
@@ -152,17 +168,17 @@ pub fn generate_dungeon_3d(
     config: Dungeon3DGeneratorConfig,
 ) -> Result<Dungeon3DGeneratorResult, Dungeon3DGeneratorError> {
     // validate
-    let w_divisions_max = config.width / (config.room_width_range.start() + config.room_margin);
-    let w_divisions_min = config.width / (config.room_width_range.end() + config.room_margin);
+    let w_divisions_max = config.width / (config.room_width_range.start() + config.room_margin_x);
+    let w_divisions_min = config.width / (config.room_width_range.end() + config.room_margin_x);
     if w_divisions_min == 0 {
         return Err(Dungeon3DGeneratorError::NarrowWidthOrRoomWidthTooLarge);
     }
-    let d_divisions_max = config.width / (config.room_depth_range.start() + config.room_margin);
-    let d_divisions_min = config.width / (config.room_depth_range.end() + config.room_margin);
+    let d_divisions_max = config.width / (config.room_depth_range.start() + config.room_margin_z);
+    let d_divisions_min = config.width / (config.room_depth_range.end() + config.room_margin_z);
     if d_divisions_min == 0 {
         return Err(Dungeon3DGeneratorError::NarrowDepthOrRoomDepthTooLarge);
     }
-    if config.room_hierarchy * (config.room_height_range.start() + config.room_margin)
+    if config.room_hierarchy * (config.room_height_range.start() + config.room_margin_y)
         > config.height
     {
         return Err(Dungeon3DGeneratorError::NarrowHeightOrRoomHierarchyTooSmall);
@@ -186,22 +202,28 @@ pub fn generate_dungeon_3d(
             for rz in 0..d_divisions {
                 let room_width = rng.gen_range(
                     *config.room_width_range.start()
-                        ..=(w_block_size - config.room_margin).min(*config.room_width_range.end()),
+                        ..=(w_block_size - config.room_margin_x)
+                            .min(*config.room_width_range.end()),
                 );
                 let room_height = rng.gen_range(
                     *config.room_height_range.start()
-                        ..=(h_block_size - config.room_margin).min(*config.room_height_range.end()),
+                        ..=(h_block_size - config.room_margin_y)
+                            .min(*config.room_height_range.end()),
                 );
                 let room_depth = rng.gen_range(
                     *config.room_depth_range.start()
-                        ..=(d_block_size - config.room_margin).min(*config.room_depth_range.end()),
+                        ..=(d_block_size - config.room_margin_z)
+                            .min(*config.room_depth_range.end()),
                 );
                 let (origin_x, origin_y, origin_z) =
                     (rx * w_block_size, ry * h_block_size, rz * d_block_size);
                 let room_origin = (
-                    origin_x + rng.gen_range(0..=(w_block_size - room_width - config.room_margin)),
-                    origin_y + rng.gen_range(0..=(h_block_size - room_height - config.room_margin)),
-                    origin_z + rng.gen_range(0..=(d_block_size - room_depth - config.room_margin)),
+                    origin_x
+                        + rng.gen_range(0..=(w_block_size - room_width - config.room_margin_x)),
+                    origin_y
+                        + rng.gen_range(0..=(h_block_size - room_height - config.room_margin_y)),
+                    origin_z
+                        + rng.gen_range(0..=(d_block_size - room_depth - config.room_margin_z)),
                 );
                 let new_room_id = room_id.gen_id();
                 room_ids.push(new_room_id);
@@ -325,10 +347,92 @@ pub fn generate_dungeon_3d(
         }
     }
 
+    // create passages
+    let mut passages = Vec::new();
+    for room_connection in necessary_room_connections.iter() {
+        let r0 = rooms.get(&room_connection.room0_id).unwrap();
+        let r1 = rooms.get(&room_connection.room1_id).unwrap();
+        let (start_room_id, end_room_id, start) = create_start(r0, r1);
+        passages.push(Passage {
+            cells: Vec::new(),
+            start: (start.x, start.y, start.z),
+            start_room_id,
+            end_room_id,
+        });
+    }
+
+    let mut cell_map: HashMap<Vector3<i32>, Cell> = HashMap::new();
+    for (room_id, room) in rooms.iter() {
+        for y in -1..room.height as i32 {
+            for z in 0..room.depth as i32 {
+                for x in 0..room.width as i32 {
+                    cell_map.insert(
+                        Vector3::new(
+                            room.origin.0 as i32 + x,
+                            room.origin.1 as i32 + y,
+                            room.origin.2 as i32 + z,
+                        ),
+                        if y == -1 {
+                            Cell::RoomFloor(*room_id)
+                        } else {
+                            Cell::RoomSpace(*room_id)
+                        },
+                    );
+                }
+            }
+        }
+    }
+
     Ok(Dungeon3DGeneratorResult {
         rooms,
         room_connections: necessary_room_connections,
+        cell_map,
+        passages,
     })
+}
+
+fn create_start(room0: &Room, room1: &Room) -> (RoomId, RoomId, Vector3<i32>) {
+    let (room_start, room_end) = if room0.origin.1 <= room1.origin.1 {
+        (room0, room1)
+    } else {
+        (room1, room0)
+    };
+    let room_start_center = room_start.center();
+    let room_end_center = room_end.center();
+    let diff_center = (
+        room_end_center.0 - room_start_center.0,
+        room_end_center.2 - room_start_center.2,
+    );
+    let width = room_start.width + room_end.width;
+    let depth = room_start.depth + room_end.depth;
+    let mut points = intersect_rect_with_line(
+        (
+            &Vector2::new(room_start.origin.0 as f32, room_start.origin.2 as f32),
+            &Vector2::new(room_start.width as f32, room_start.depth as f32),
+        ),
+        &Vector2::new(room_start_center.0, room_start_center.2),
+        &Vector2::new(diff_center.0 * width as f32, diff_center.1 * depth as f32),
+    );
+    if let Some(mut p) = points
+        .pop()
+        .map(|p| Vector3::new(p.x as i32, room_start.origin.1 as i32, p.y as i32))
+    {
+        if p.x == (room_start.origin.0 + room_start.width) as i32 {
+            p.x -= 1;
+        } else if p.z == (room_start.origin.2 + room_start.depth) as i32 {
+            p.z -= 1;
+        }
+        return (room_start.id, room_end.id, p);
+    }
+    (
+        room_start.id,
+        room_end.id,
+        Vector3::new(
+            room_start.origin.0 as i32 - 1,
+            room_start.origin.1 as i32,
+            room_start.origin.2 as i32,
+        ),
+    )
 }
 
 #[cfg(test)]

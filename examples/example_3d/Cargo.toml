@@ -6,3 +6,4 @@ edition = "2021"
 [dependencies]
 kiss3d = "0.35.0"
 dungeon_3d_generator = { path = "../../../dungeon_3d_generator" }
+pathfinding = "4.11.0"
