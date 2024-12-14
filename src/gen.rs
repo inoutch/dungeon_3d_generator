@@ -1,10 +1,12 @@
-use crate::constants::Cell;
+use crate::constants::{Direction4, VoxelType};
 use crate::delaunary_3d::Delaunay3D;
 use crate::intersect_rect_with_line::intersect_rect_with_line;
+use crate::voxel_map::{VoxelMap, VoxelMapError};
 use nalgebra::{Vector2, Vector3};
 use pathfinding::prelude::kruskal;
 use rand::{Rng, SeedableRng};
-use std::collections::{BTreeMap, HashMap, HashSet};
+use std::cmp::Ordering;
+use std::collections::{BTreeMap, BTreeSet};
 use std::hash::{Hash, Hasher};
 use std::ops::RangeInclusive;
 use std::rc::Rc;
@@ -21,22 +23,26 @@ pub struct Dungeon3DGeneratorConfig {
     pub room_margin_x: u32,
     pub room_margin_y: u32,
     pub room_margin_z: u32,
+    pub passage_height: u32,
+    pub margin_for_bounds: u32, // Margin used to specify a range for all elements to fit, such as passages
 }
 
 impl Default for Dungeon3DGeneratorConfig {
     fn default() -> Self {
         Dungeon3DGeneratorConfig {
             width: 32,
-            height: 16,
+            height: 10,
             depth: 32,
             seed: None,
             room_hierarchy: 3,
             room_width_range: 5..=10,
-            room_height_range: 2..=3,
+            room_height_range: 2..=2,
             room_depth_range: 5..=10,
-            room_margin_x: 2,
+            room_margin_x: 4,
             room_margin_y: 1,
-            room_margin_z: 2,
+            room_margin_z: 4,
+            passage_height: 2,
+            margin_for_bounds: 4,
         }
     }
 }
@@ -143,17 +149,18 @@ impl Hash for RoomConnection {
 
 #[derive(Debug)]
 pub struct Passage {
-    pub cells: Vec<((i32, i32, i32), Cell)>,
+    pub cells: Vec<((i32, i32, i32), VoxelType)>,
     pub start: (i32, i32, i32),
+    pub start_dirs: BTreeSet<Direction4>,
     pub start_room_id: RoomId,
     pub end_room_id: RoomId,
+    pub height: i32,
 }
 
 #[derive(Debug)]
 pub struct Dungeon3DGeneratorResult {
     pub rooms: BTreeMap<RoomId, Room>,
-    pub room_connections: HashSet<Rc<RoomConnection>>,
-    pub cell_map: HashMap<Vector3<i32>, Cell>,
+    pub voxel_map: VoxelMap,
     pub passages: Vec<Passage>,
 }
 
@@ -162,11 +169,16 @@ pub enum Dungeon3DGeneratorError {
     NarrowWidthOrRoomWidthTooLarge,
     NarrowDepthOrRoomDepthTooLarge,
     NarrowHeightOrRoomHierarchyTooSmall,
+    VoxelMapError(VoxelMapError),
 }
 
 pub fn generate_dungeon_3d(
-    config: Dungeon3DGeneratorConfig,
+    mut config: Dungeon3DGeneratorConfig,
 ) -> Result<Dungeon3DGeneratorResult, Dungeon3DGeneratorError> {
+    config.room_margin_x = config.room_margin_x.max(1);
+    config.room_margin_y = config.room_margin_y.max(1);
+    config.room_margin_z = config.room_margin_z.max(1);
+
     // validate
     let w_divisions_max = config.width / (config.room_width_range.start() + config.room_margin_x);
     let w_divisions_min = config.width / (config.room_width_range.end() + config.room_margin_x);
@@ -241,30 +253,6 @@ pub fn generate_dungeon_3d(
         }
     }
 
-    let center = (
-        config.width as f32 / 2.0f32,
-        config.height as f32 / 2.0,
-        config.depth as f32 / 2.0f32,
-    );
-    let mut sorted_rooms = rooms
-        .values()
-        .map(|room| {
-            let room_center = room.center();
-            let diff = (
-                room_center.0 - center.0,
-                room_center.1 - center.1,
-                room_center.2 - center.2,
-            );
-            let squared_length = diff.0 * diff.0 + diff.1 * diff.1 + diff.2 * diff.2;
-            (room.id, squared_length)
-        })
-        .collect::<Vec<_>>();
-    sorted_rooms.sort_by(|a, b| a.1.partial_cmp(&b.1).unwrap());
-
-    for (_, room) in rooms.iter_mut() {
-        let mut room_origin = room.origin;
-    }
-
     let mut room_connections = Vec::new();
     let mut room_connection_map: BTreeMap<RoomId, BTreeMap<RoomId, Rc<RoomConnection>>> =
         BTreeMap::new();
@@ -297,6 +285,19 @@ pub fn generate_dungeon_3d(
                 .insert(target_room.id, room_connection.clone());
         }
     }
+    let mut voxel_map = VoxelMap::new(
+        -(config.margin_for_bounds as i32),
+        -(config.margin_for_bounds as i32),
+        -(config.margin_for_bounds as i32),
+        (config.width + config.margin_for_bounds) as i32,
+        (config.height + config.margin_for_bounds) as i32,
+        (config.depth + config.margin_for_bounds) as i32,
+    );
+    for (_, room) in rooms.iter() {
+        voxel_map
+            .add_room(room)
+            .map_err(Dungeon3DGeneratorError::VoxelMapError)?;
+    }
 
     // Create mst of room neighbors
     let weighted_edges = room_connections
@@ -310,17 +311,73 @@ pub fn generate_dungeon_3d(
         })
         .collect::<Vec<_>>();
 
-    let mut necessary_room_connections = kruskal(&weighted_edges)
+    #[derive(Eq, PartialEq)]
+    struct RoomConnectionKey {
+        room_0_id: RoomId,
+        room_1_id: RoomId,
+    }
+    impl RoomConnectionKey {
+        pub fn new(room_0_id: RoomId, room_1_id: RoomId) -> Self {
+            if room_0_id.0 < room_1_id.0 {
+                return RoomConnectionKey {
+                    room_0_id,
+                    room_1_id,
+                };
+            }
+            RoomConnectionKey {
+                room_0_id: room_1_id,
+                room_1_id: room_0_id,
+            }
+        }
+    }
+    impl PartialOrd for RoomConnectionKey {
+        fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+            Some(self.cmp(other))
+        }
+    }
+    impl Ord for RoomConnectionKey {
+        fn cmp(&self, other: &Self) -> Ordering {
+            if self.room_0_id == other.room_0_id {
+                self.room_1_id.cmp(&other.room_1_id)
+            } else {
+                self.room_0_id.cmp(&other.room_0_id)
+            }
+        }
+    }
+    let necessary_room_connections = kruskal(&weighted_edges)
         .map(|(room0_id, room1_id, _)| {
-            Rc::clone(
-                room_connection_map
-                    .get(room0_id)
-                    .unwrap()
-                    .get(room1_id)
-                    .unwrap(),
+            (
+                RoomConnectionKey::new(*room0_id, *room1_id),
+                Rc::clone(
+                    room_connection_map
+                        .get(room0_id)
+                        .unwrap()
+                        .get(room1_id)
+                        .unwrap(),
+                ),
             )
         })
-        .collect::<HashSet<_>>();
+        .collect::<BTreeMap<_, _>>();
+    // create passages
+    let mut passages = Vec::new();
+    for (_, room_connection) in necessary_room_connections.iter() {
+        let r0 = rooms.get(&room_connection.room0_id).unwrap();
+        let r1 = rooms.get(&room_connection.room1_id).unwrap();
+        let (start_room_id, end_room_id, start, dirs) = create_start(r0, r1);
+        passages.push(Passage {
+            cells: Vec::new(),
+            start: (start.x, start.y, start.z),
+            start_dirs: dirs,
+            start_room_id,
+            end_room_id,
+            height: config.passage_height as i32,
+        });
+    }
+    for passage in passages.iter() {
+        voxel_map
+            .add_passage(passage, &rooms)
+            .map_err(Dungeon3DGeneratorError::VoxelMapError)?;
+    }
 
     let delaunay = Delaunay3D::new(
         rooms
@@ -331,7 +388,7 @@ pub fn generate_dungeon_3d(
             })
             .collect(),
     );
-    let room_connections = delaunay
+    let additional_room_connections = delaunay
         .edges
         .iter()
         .map(|edge| RoomConnection {
@@ -341,57 +398,41 @@ pub fn generate_dungeon_3d(
         })
         .collect::<Vec<_>>();
 
-    for room_connection in room_connections {
-        if rng.gen_bool(0.3) {
-            necessary_room_connections.insert(Rc::new(room_connection));
-        }
-    }
-
-    // create passages
-    let mut passages = Vec::new();
-    for room_connection in necessary_room_connections.iter() {
-        let r0 = rooms.get(&room_connection.room0_id).unwrap();
-        let r1 = rooms.get(&room_connection.room1_id).unwrap();
-        let (start_room_id, end_room_id, start) = create_start(r0, r1);
-        passages.push(Passage {
-            cells: Vec::new(),
-            start: (start.x, start.y, start.z),
-            start_room_id,
-            end_room_id,
-        });
-    }
-
-    let mut cell_map: HashMap<Vector3<i32>, Cell> = HashMap::new();
-    for (room_id, room) in rooms.iter() {
-        for y in -1..room.height as i32 {
-            for z in 0..room.depth as i32 {
-                for x in 0..room.width as i32 {
-                    cell_map.insert(
-                        Vector3::new(
-                            room.origin.0 as i32 + x,
-                            room.origin.1 as i32 + y,
-                            room.origin.2 as i32 + z,
-                        ),
-                        if y == -1 {
-                            Cell::RoomFloor(*room_id)
-                        } else {
-                            Cell::RoomSpace(*room_id)
-                        },
-                    );
-                }
+    for room_connection in additional_room_connections {
+        if rng.gen_bool(0.3)
+            && !necessary_room_connections.contains_key(&RoomConnectionKey::new(
+                room_connection.room0_id,
+                room_connection.room1_id,
+            ))
+        {
+            let r0 = rooms.get(&room_connection.room0_id).unwrap();
+            let r1 = rooms.get(&room_connection.room1_id).unwrap();
+            let (start_room_id, end_room_id, start, dirs) = create_start(r0, r1);
+            let passage = Passage {
+                cells: Vec::new(),
+                start: (start.x, start.y, start.z),
+                start_dirs: dirs,
+                start_room_id,
+                end_room_id,
+                height: config.passage_height as i32,
+            };
+            if voxel_map.add_passage(&passage, &rooms).is_ok() {
+                passages.push(passage);
             }
         }
     }
 
     Ok(Dungeon3DGeneratorResult {
         rooms,
-        room_connections: necessary_room_connections,
-        cell_map,
+        voxel_map,
         passages,
     })
 }
 
-fn create_start(room0: &Room, room1: &Room) -> (RoomId, RoomId, Vector3<i32>) {
+fn create_start(
+    room0: &Room,
+    room1: &Room,
+) -> (RoomId, RoomId, Vector3<i32>, BTreeSet<Direction4>) {
     let (room_start, room_end) = if room0.origin.1 <= room1.origin.1 {
         (room0, room1)
     } else {
@@ -413,26 +454,33 @@ fn create_start(room0: &Room, room1: &Room) -> (RoomId, RoomId, Vector3<i32>) {
         &Vector2::new(room_start_center.0, room_start_center.2),
         &Vector2::new(diff_center.0 * width as f32, diff_center.1 * depth as f32),
     );
-    if let Some(mut p) = points
+    let mut dirs = BTreeSet::new();
+    let mut p = points
         .pop()
         .map(|p| Vector3::new(p.x as i32, room_start.origin.1 as i32, p.y as i32))
-    {
-        if p.x == (room_start.origin.0 + room_start.width) as i32 {
-            p.x -= 1;
-        } else if p.z == (room_start.origin.2 + room_start.depth) as i32 {
-            p.z -= 1;
-        }
-        return (room_start.id, room_end.id, p);
+        .unwrap_or_else(|| {
+            Vector3::new(
+                room_start.origin.0 as i32,
+                room_start.origin.1 as i32,
+                room_start.origin.2 as i32,
+            )
+        });
+
+    if p.x == room_start.origin.0 as i32 {
+        dirs.insert(Direction4::Left);
+    } else if p.x == (room_start.origin.0 + room_start.width) as i32 {
+        p.x -= 1;
+        dirs.insert(Direction4::Right);
     }
-    (
-        room_start.id,
-        room_end.id,
-        Vector3::new(
-            room_start.origin.0 as i32 - 1,
-            room_start.origin.1 as i32,
-            room_start.origin.2 as i32,
-        ),
-    )
+
+    if p.z == room_start.origin.2 as i32 {
+        dirs.insert(Direction4::Far);
+    } else if p.z == (room_start.origin.2 + room_start.depth) as i32 {
+        p.z -= 1;
+        dirs.insert(Direction4::Near);
+    }
+
+    (room_start.id, room_end.id, p, dirs)
 }
 
 #[cfg(test)]
@@ -446,6 +494,7 @@ mod tests {
             ..Default::default()
         })
         .unwrap();
-        insta::assert_debug_snapshot!(result);
+        insta::assert_debug_snapshot!(result.passages);
+        insta::assert_debug_snapshot!(result.rooms);
     }
 }

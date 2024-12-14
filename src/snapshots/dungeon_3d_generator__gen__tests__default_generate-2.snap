@@ -1,0 +1,246 @@
+---
+source: src/gen.rs
+expression: result.rooms
+---
+{
+    RoomId(
+        1,
+    ): Room {
+        id: RoomId(
+            1,
+        ),
+        width: 6,
+        height: 2,
+        depth: 6,
+        origin: (
+            0,
+            0,
+            0,
+        ),
+        center_offset: (
+            3.0,
+            1.0,
+            3.0,
+        ),
+    },
+    RoomId(
+        2,
+    ): Room {
+        id: RoomId(
+            2,
+        ),
+        width: 5,
+        height: 2,
+        depth: 5,
+        origin: (
+            0,
+            0,
+            10,
+        ),
+        center_offset: (
+            2.5,
+            1.0,
+            2.5,
+        ),
+    },
+    RoomId(
+        3,
+    ): Room {
+        id: RoomId(
+            3,
+        ),
+        width: 5,
+        height: 2,
+        depth: 6,
+        origin: (
+            0,
+            0,
+            20,
+        ),
+        center_offset: (
+            2.5,
+            1.0,
+            3.0,
+        ),
+    },
+    RoomId(
+        4,
+    ): Room {
+        id: RoomId(
+            4,
+        ),
+        width: 6,
+        height: 2,
+        depth: 9,
+        origin: (
+            10,
+            0,
+            0,
+        ),
+        center_offset: (
+            3.0,
+            1.0,
+            4.5,
+        ),
+    },
+    RoomId(
+        5,
+    ): Room {
+        id: RoomId(
+            5,
+        ),
+        width: 6,
+        height: 2,
+        depth: 7,
+        origin: (
+            10,
+            0,
+            17,
+        ),
+        center_offset: (
+            3.0,
+            1.0,
+            3.5,
+        ),
+    },
+    RoomId(
+        6,
+    ): Room {
+        id: RoomId(
+            6,
+        ),
+        width: 6,
+        height: 2,
+        depth: 5,
+        origin: (
+            20,
+            0,
+            5,
+        ),
+        center_offset: (
+            3.0,
+            1.0,
+            2.5,
+        ),
+    },
+    RoomId(
+        7,
+    ): Room {
+        id: RoomId(
+            7,
+        ),
+        width: 5,
+        height: 2,
+        depth: 10,
+        origin: (
+            21,
+            0,
+            18,
+        ),
+        center_offset: (
+            2.5,
+            1.0,
+            5.0,
+        ),
+    },
+    RoomId(
+        8,
+    ): Room {
+        id: RoomId(
+            8,
+        ),
+        width: 6,
+        height: 2,
+        depth: 10,
+        origin: (
+            4,
+            3,
+            5,
+        ),
+        center_offset: (
+            3.0,
+            1.0,
+            5.0,
+        ),
+    },
+    RoomId(
+        9,
+    ): Room {
+        id: RoomId(
+            9,
+        ),
+        width: 5,
+        height: 2,
+        depth: 10,
+        origin: (
+            0,
+            6,
+            0,
+        ),
+        center_offset: (
+            2.5,
+            1.0,
+            5.0,
+        ),
+    },
+    RoomId(
+        10,
+    ): Room {
+        id: RoomId(
+            10,
+        ),
+        width: 6,
+        height: 2,
+        depth: 6,
+        origin: (
+            6,
+            6,
+            21,
+        ),
+        center_offset: (
+            3.0,
+            1.0,
+            3.0,
+        ),
+    },
+    RoomId(
+        11,
+    ): Room {
+        id: RoomId(
+            11,
+        ),
+        width: 8,
+        height: 2,
+        depth: 7,
+        origin: (
+            16,
+            6,
+            1,
+        ),
+        center_offset: (
+            4.0,
+            1.0,
+            3.5,
+        ),
+    },
+    RoomId(
+        12,
+    ): Room {
+        id: RoomId(
+            12,
+        ),
+        width: 9,
+        height: 2,
+        depth: 5,
+        origin: (
+            16,
+            6,
+            17,
+        ),
+        center_offset: (
+            4.5,
+            1.0,
+            2.5,
+        ),
+    },
+}

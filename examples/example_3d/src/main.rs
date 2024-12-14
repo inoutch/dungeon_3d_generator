@@ -1,3 +1,4 @@
+use dungeon_3d_generator::constants::VoxelType;
 use dungeon_3d_generator::gen::{generate_dungeon_3d, Dungeon3DGeneratorConfig};
 use kiss3d::light::Light;
 use kiss3d::nalgebra::{Point3, Translation3};
@@ -24,20 +25,47 @@ fn main() {
         ));
     }
 
-    for passage in dungeon.passages.iter() {
-        let mut c = window.add_cube(1.0, 1.0, 1.0);
-        c.set_color(1.0, 1.0, 0.5);
-        c.set_local_translation(Translation3::new(
-            passage.start.0 as f32 + 0.5,
-            passage.start.1 as f32 + 0.5,
-            passage.start.2 as f32 + 0.5,
-        ));
+    for (key, value) in dungeon.voxel_map.map.iter() {
+        match value {
+            VoxelType::RoomSpace(_) => {}
+            VoxelType::RoomFloor(_) => {}
+            VoxelType::RoomBottomSpace(_) => {}
+            VoxelType::RoomWall(_) => {}
+            VoxelType::Wall => {}
+            VoxelType::PassageStair(_) => {
+                let mut c = window.add_cube(1.0, 1.0, 1.0);
+                c.set_color(1.0, 0.8, 0.5);
+                c.set_local_translation(Translation3::new(
+                    key.x as f32 + 0.5,
+                    key.y as f32 + 0.5,
+                    key.z as f32 + 0.5,
+                ));
+            }
+            VoxelType::PassageSpace => {
+                let mut c = window.add_cube(1.0, 1.0, 1.0);
+                c.set_color(1.0, 0.8, 0.8);
+                c.set_local_translation(Translation3::new(
+                    key.x as f32 + 0.5,
+                    key.y as f32 + 0.5,
+                    key.z as f32 + 0.5,
+                ));
+            }
+            VoxelType::PassageFloor => {
+                let mut c = window.add_cube(1.0, 1.0, 1.0);
+                c.set_color(1.0, 0.5, 0.5);
+                c.set_local_translation(Translation3::new(
+                    key.x as f32 + 0.5,
+                    key.y as f32 + 0.5,
+                    key.z as f32 + 0.5,
+                ));
+            }
+        }
     }
 
     while window.render() {
-        for room_connection in dungeon.room_connections.iter() {
-            let room0 = dungeon.rooms.get(&room_connection.room0_id).unwrap();
-            let room1 = dungeon.rooms.get(&room_connection.room1_id).unwrap();
+        for passage in dungeon.passages.iter() {
+            let room0 = dungeon.rooms.get(&passage.start_room_id).unwrap();
+            let room1 = dungeon.rooms.get(&passage.end_room_id).unwrap();
             let room0_center = room0.center();
             let room1_center = room1.center();
             window.draw_line(
