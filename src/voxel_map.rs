@@ -1,6 +1,7 @@
 use crate::btree_key_values::BTreeKeyValues;
 use crate::constants::{Direction4, VoxelType, DIRECTIONS};
-use crate::gen::{Passage, Room, RoomId};
+use crate::passage::Passage;
+use crate::room::{Room, RoomId};
 use nalgebra::Vector3;
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 

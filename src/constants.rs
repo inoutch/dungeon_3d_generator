@@ -1,4 +1,4 @@
-use crate::gen::RoomId;
+use crate::room::RoomId;
 use nalgebra::Vector3;
 use std::sync::LazyLock;
 

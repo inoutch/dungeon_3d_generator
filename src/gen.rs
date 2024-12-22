@@ -1,13 +1,15 @@
-use crate::constants::{Direction4, VoxelType};
+use crate::constants::Direction4;
 use crate::delaunary_3d::Delaunay3D;
 use crate::intersect_rect_with_line::intersect_rect_with_line;
+use crate::passage::Passage;
+use crate::room::{Room, RoomId};
+use crate::room_connection::RoomConnection;
 use crate::voxel_map::{VoxelMap, VoxelMapError};
 use nalgebra::{Vector2, Vector3};
 use pathfinding::prelude::kruskal;
 use rand::{Rng, SeedableRng};
 use std::cmp::Ordering;
 use std::collections::{BTreeMap, BTreeSet};
-use std::hash::{Hash, Hasher};
 use std::ops::RangeInclusive;
 use std::rc::Rc;
 
@@ -45,116 +47,6 @@ impl Default for Dungeon3DGeneratorConfig {
             margin_for_bounds: 4,
         }
     }
-}
-
-#[derive(Debug)]
-pub struct Room {
-    pub id: RoomId,
-    pub width: u32,
-    pub height: u32,
-    pub depth: u32,
-    pub origin: (u32, u32, u32),
-    pub center_offset: (f32, f32, f32),
-}
-
-impl Room {
-    pub fn new(id: RoomId, width: u32, height: u32, depth: u32, origin: (u32, u32, u32)) -> Self {
-        Room {
-            id,
-            width,
-            height,
-            depth,
-            origin,
-            center_offset: (width as f32 / 2.0, height as f32 / 2.0, depth as f32 / 2.0),
-        }
-    }
-
-    pub fn center(&self) -> (f32, f32, f32) {
-        (
-            self.center_offset.0 + self.origin.0 as f32,
-            self.center_offset.1 + self.origin.1 as f32,
-            self.center_offset.2 + self.origin.2 as f32,
-        )
-    }
-
-    pub fn end(&self) -> (u32, u32, u32) {
-        (
-            self.origin.0 + self.width,
-            self.origin.1 + self.height,
-            self.origin.2 + self.depth,
-        )
-    }
-
-    pub fn is_contract(&self, other: &Room, margin: u32) -> bool {
-        let self_end = self.end();
-        let self_end = (
-            self_end.0 + margin,
-            self_end.1 + margin,
-            self_end.2 + margin,
-        );
-        let other_end = other.end();
-        let other_end = (
-            other_end.0 + margin,
-            other_end.1 + margin,
-            other_end.2 + margin,
-        );
-        self.origin.0 <= other_end.0
-            && other.origin.0 <= self_end.0
-            && self.origin.1 <= other_end.1
-            && other.origin.1 <= self_end.1
-            && self.origin.2 <= other_end.2
-            && other.origin.2 <= self_end.2
-    }
-}
-
-#[derive(Ord, PartialOrd, PartialEq, Eq, Hash, Copy, Clone, Debug)]
-pub struct RoomId(u64);
-
-impl RoomId {
-    pub fn first() -> Self {
-        RoomId(1)
-    }
-
-    pub fn gen_id(&mut self) -> Self {
-        let ret = *self;
-        self.0 += 1;
-        ret
-    }
-}
-
-#[derive(Debug)]
-pub struct RoomConnection {
-    pub room0_id: RoomId,
-    pub room1_id: RoomId,
-    pub squared_length: f32,
-}
-
-impl Eq for RoomConnection {}
-
-impl PartialEq for RoomConnection {
-    fn eq(&self, other: &Self) -> bool {
-        self.room0_id == other.room0_id && self.room1_id == other.room1_id
-    }
-}
-
-impl Hash for RoomConnection {
-    fn hash<H: Hasher>(&self, state: &mut H) {
-        if self.room0_id.0 < self.room1_id.0 {
-            (self.room0_id, self.room1_id).hash(state);
-        } else {
-            (self.room1_id, self.room0_id).hash(state);
-        }
-    }
-}
-
-#[derive(Debug)]
-pub struct Passage {
-    pub cells: Vec<((i32, i32, i32), VoxelType)>,
-    pub start: (i32, i32, i32),
-    pub start_dirs: BTreeSet<Direction4>,
-    pub start_room_id: RoomId,
-    pub end_room_id: RoomId,
-    pub height: i32,
 }
 
 #[derive(Debug)]
@@ -318,7 +210,7 @@ pub fn generate_dungeon_3d(
     }
     impl RoomConnectionKey {
         pub fn new(room_0_id: RoomId, room_1_id: RoomId) -> Self {
-            if room_0_id.0 < room_1_id.0 {
+            if room_0_id.inner() < room_1_id.inner() {
                 return RoomConnectionKey {
                     room_0_id,
                     room_1_id,
