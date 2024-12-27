@@ -1,8 +1,9 @@
 [package]
-name = "example_3d"
+name = "ced_example"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 kiss3d = "0.35.0"
 dungeon_3d_generator = { path = "../../../dungeon_3d_generator" }
+rand = "0.8.5"

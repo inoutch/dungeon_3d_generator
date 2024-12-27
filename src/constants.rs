@@ -28,6 +28,15 @@ impl Direction4 {
             Direction4::Near => other == &Direction4::Right,
         }
     }
+
+    pub fn opposite(&self) -> Self {
+        match self {
+            Direction4::Left => Direction4::Right,
+            Direction4::Right => Direction4::Left,
+            Direction4::Far => Direction4::Near,
+            Direction4::Near => Direction4::Far,
+        }
+    }
 }
 
 pub static DIRECTIONS: LazyLock<[Direction4; 4]> = LazyLock::new(|| {

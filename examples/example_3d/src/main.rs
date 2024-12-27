@@ -1,5 +1,5 @@
 use dungeon_3d_generator::constants::VoxelType;
-use dungeon_3d_generator::gen::{generate_dungeon_3d, Dungeon3DGeneratorConfig};
+use dungeon_3d_generator::generate_drd::{generate_dungeon_3d, Dungeon3DGeneratorConfig};
 use kiss3d::light::Light;
 use kiss3d::nalgebra::{Point3, Translation3};
 use kiss3d::window::Window;
