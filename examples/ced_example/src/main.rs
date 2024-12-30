@@ -11,21 +11,20 @@ fn main() {
 
     let dungeon = generate_ced(CEDConfig {
         seed: Some(1),
+        room_size_max: 30,
         ..Default::default()
     })
     .unwrap();
 
-    for (index, (room_candidate_index, origin)) in
-        dungeon.room_candidate_indices.into_iter().enumerate()
-    {
-        let room = &dungeon.room_candidates[room_candidate_index];
+    for (index, (_, entity)) in dungeon.room_candidate_entities.into_iter().enumerate() {
+        let room = &dungeon.room_candidates[entity.index];
         let mut c = window.add_cube(room.width as f32, room.height as f32, room.depth as f32);
         let (r, g, b) = generate_random_color_from_i32(index as i32);
         c.set_color(r, g, b);
         c.set_local_translation(Translation3::new(
-            origin.0 as f32 + room.width as f32 / 2.0,
-            origin.1 as f32 + room.height as f32 / 2.0,
-            origin.2 as f32 + room.depth as f32 / 2.0,
+            entity.origin.0 as f32 + room.width as f32 / 2.0,
+            entity.origin.1 as f32 + room.height as f32 / 2.0,
+            entity.origin.2 as f32 + room.depth as f32 / 2.0,
         ));
     }
 

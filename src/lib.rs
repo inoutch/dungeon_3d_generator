@@ -9,5 +9,6 @@ mod intersect_line_and_line;
 mod intersect_rect_with_line;
 pub mod passage;
 pub mod room;
+pub mod room_candidate_connection;
 pub mod room_connection;
 pub mod voxel_map;
